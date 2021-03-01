@@ -10,6 +10,13 @@
 		8D55907925ECF62900F88D9C /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55907825ECF62900F88D9C /* TabsViewController.swift */; };
 		8D55907D25ECF68500F88D9C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55907C25ECF68500F88D9C /* SearchViewController.swift */; };
 		8D55908025ECF69200F88D9C /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55907F25ECF69200F88D9C /* LibraryViewController.swift */; };
+		8D55908525ECF74100F88D9C /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55908425ECF74100F88D9C /* AuthViewController.swift */; };
+		8D55908825ECF75300F88D9C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55908725ECF75300F88D9C /* WelcomeViewController.swift */; };
+		8D55908B25ECF84200F88D9C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55908A25ECF84200F88D9C /* SettingsViewController.swift */; };
+		8D55908E25ECF84C00F88D9C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55908D25ECF84C00F88D9C /* ProfileViewController.swift */; };
+		8D55909125ECF85600F88D9C /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55909025ECF85600F88D9C /* PlayerViewController.swift */; };
+		8D55909425ECF86000F88D9C /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55909325ECF86000F88D9C /* PlaylistViewController.swift */; };
+		8D55909725ECF88300F88D9C /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55909625ECF88300F88D9C /* SearchResultsViewController.swift */; };
 		8DD67E0D25DDA53C00B839C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD67E0C25DDA53C00B839C0 /* AppDelegate.swift */; };
 		8DD67E0F25DDA53C00B839C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD67E0E25DDA53C00B839C0 /* SceneDelegate.swift */; };
 		8DD67E1125DDA53C00B839C0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD67E1025DDA53C00B839C0 /* HomeViewController.swift */; };
@@ -21,6 +28,13 @@
 		8D55907825ECF62900F88D9C /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		8D55907C25ECF68500F88D9C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8D55907F25ECF69200F88D9C /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		8D55908425ECF74100F88D9C /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		8D55908725ECF75300F88D9C /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		8D55908A25ECF84200F88D9C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		8D55908D25ECF84C00F88D9C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8D55909025ECF85600F88D9C /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		8D55909325ECF86000F88D9C /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		8D55909625ECF88300F88D9C /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		8DD67E0925DDA53C00B839C0 /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD67E0C25DDA53C00B839C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DD67E0E25DDA53C00B839C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +117,13 @@
 		8D55908325ECF71C00F88D9C /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				8D55908425ECF74100F88D9C /* AuthViewController.swift */,
+				8D55908725ECF75300F88D9C /* WelcomeViewController.swift */,
+				8D55908A25ECF84200F88D9C /* SettingsViewController.swift */,
+				8D55908D25ECF84C00F88D9C /* ProfileViewController.swift */,
+				8D55909025ECF85600F88D9C /* PlayerViewController.swift */,
+				8D55909325ECF86000F88D9C /* PlaylistViewController.swift */,
+				8D55909625ECF88300F88D9C /* SearchResultsViewController.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -207,11 +228,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D55907D25ECF68500F88D9C /* SearchViewController.swift in Sources */,
+				8D55909725ECF88300F88D9C /* SearchResultsViewController.swift in Sources */,
+				8D55908825ECF75300F88D9C /* WelcomeViewController.swift in Sources */,
+				8D55908E25ECF84C00F88D9C /* ProfileViewController.swift in Sources */,
 				8D55907925ECF62900F88D9C /* TabsViewController.swift in Sources */,
 				8DD67E1125DDA53C00B839C0 /* HomeViewController.swift in Sources */,
+				8D55908525ECF74100F88D9C /* AuthViewController.swift in Sources */,
 				8DD67E0D25DDA53C00B839C0 /* AppDelegate.swift in Sources */,
 				8D55908025ECF69200F88D9C /* LibraryViewController.swift in Sources */,
+				8D55909425ECF86000F88D9C /* PlaylistViewController.swift in Sources */,
 				8DD67E0F25DDA53C00B839C0 /* SceneDelegate.swift in Sources */,
+				8D55909125ECF85600F88D9C /* PlayerViewController.swift in Sources */,
+				8D55908B25ECF84200F88D9C /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
