@@ -127,8 +127,8 @@
 		8D55908225ECF6AB00F88D9C /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				8DD67E1025DDA53C00B839C0 /* HomeViewController.swift */,
 				8D55907825ECF62900F88D9C /* TabsViewController.swift */,
+				8DD67E1025DDA53C00B839C0 /* HomeViewController.swift */,
 				8D55907C25ECF68500F88D9C /* SearchViewController.swift */,
 				8D55907F25ECF69200F88D9C /* LibraryViewController.swift */,
 			);
