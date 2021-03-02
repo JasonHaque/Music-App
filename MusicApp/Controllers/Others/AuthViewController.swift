@@ -46,6 +46,22 @@ class AuthViewController: UIViewController,WKNavigationDelegate {
         webView.frame = view.bounds
     }
     
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        
+        guard let url = webView.url else {
+            return
+        }
+        
+        //getting code out of the url
+        
+        let component = URLComponents(string: url.absoluteString)
+        guard let code = component?.queryItems?.first(where: { $0.name == "code"})?.value else {
+            return
+        }
+        
+        print("Code : \(code)")
+        
+    }
 
    
 
