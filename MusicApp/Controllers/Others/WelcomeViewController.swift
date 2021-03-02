@@ -28,7 +28,7 @@ class WelcomeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        signInButton.frame = CGRect(x: 20, y: 1, width: 200, height: 50)
+        signInButton.frame = CGRect(x: 20, y: view.height-50-view.safeAreaInsets.bottom, width: view.width-40, height: 50)
         
     }
     
