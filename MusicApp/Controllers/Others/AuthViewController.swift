@@ -67,7 +67,7 @@ class AuthViewController: UIViewController,WKNavigationDelegate {
             
             
             DispatchQueue.main.async {
-                self?.navigationController?.popViewController(animated: true)
+                self?.navigationController?.popToRootViewController(animated: true)
                 self?.completionHandler?(success)
             }
             
