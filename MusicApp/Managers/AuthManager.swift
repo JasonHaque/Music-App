@@ -49,23 +49,7 @@ final class AuthManager{
     }
     
     public func exchangeCodeForToken(code : String, completion : @escaping ((Bool)-> Void)){
-        guard let url = URL(string: Constants.tokenAPIURL) else{
-            return
-        }
-        var request = URLRequest(url: url)
-        
-        request.httpMethod = "POST"
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            
-            guard let data = data , error == nil else{
-                completion(false)
-                return
-            }
-            
-        }
-        
-        task.resume()
+        //will do later
         
     }
     
