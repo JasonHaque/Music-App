@@ -14,6 +14,7 @@ final class AuthManager{
     struct Constants{
         static let clientID = "42157579101c4d5ba3cd04ef455e46b0"
         static let clientSecret = "6ea5624768cf41a0b02aa3753b67d8be"
+        static let tokenAPIURL = "https://accounts.spotify.com/api/token"
     }
     
     private init(){}
@@ -48,6 +49,23 @@ final class AuthManager{
     }
     
     public func exchangeCodeForToken(code : String, completion : @escaping ((Bool)-> Void)){
+        guard let url = URL(string: Constants.tokenAPIURL) else{
+            return
+        }
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "POST"
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            guard let data = data , error == nil else{
+                completion(false)
+                return
+            }
+            
+        }
+        
+        task.resume()
         
     }
     
