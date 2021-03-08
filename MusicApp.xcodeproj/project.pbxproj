@@ -25,6 +25,7 @@
 		8D5590A925ECF96A00F88D9C /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5590A825ECF96A00F88D9C /* Artist.swift */; };
 		8D5590AC25ECF99D00F88D9C /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5590AB25ECF99D00F88D9C /* UserProfile.swift */; };
 		8DB69EBC25EE907100988292 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB69EBB25EE907100988292 /* Extensions.swift */; };
+		8DB69EBF25F674F600988292 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB69EBE25F674F600988292 /* AuthResponse.swift */; };
 		8DD67E0D25DDA53C00B839C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD67E0C25DDA53C00B839C0 /* AppDelegate.swift */; };
 		8DD67E0F25DDA53C00B839C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD67E0E25DDA53C00B839C0 /* SceneDelegate.swift */; };
 		8DD67E1125DDA53C00B839C0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD67E1025DDA53C00B839C0 /* HomeViewController.swift */; };
@@ -51,6 +52,7 @@
 		8D5590A825ECF96A00F88D9C /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		8D5590AB25ECF99D00F88D9C /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		8DB69EBB25EE907100988292 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8DB69EBE25F674F600988292 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		8DD67E0925DDA53C00B839C0 /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD67E0C25DDA53C00B839C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DD67E0E25DDA53C00B839C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				8D5590A525ECF95F00F88D9C /* AudioTrack.swift */,
 				8D5590A825ECF96A00F88D9C /* Artist.swift */,
 				8D5590AB25ECF99D00F88D9C /* UserProfile.swift */,
+				8DB69EBE25F674F600988292 /* AuthResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				8D5590A025ECF91100F88D9C /* Haptics.swift in Sources */,
 				8D55908E25ECF84C00F88D9C /* ProfileViewController.swift in Sources */,
 				8D55907925ECF62900F88D9C /* TabsViewController.swift in Sources */,
+				8DB69EBF25F674F600988292 /* AuthResponse.swift in Sources */,
 				8D5590A625ECF95F00F88D9C /* AudioTrack.swift in Sources */,
 				8DD67E1125DDA53C00B839C0 /* HomeViewController.swift in Sources */,
 				8D55908525ECF74100F88D9C /* AuthViewController.swift in Sources */,
