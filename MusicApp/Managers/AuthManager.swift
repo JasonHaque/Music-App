@@ -15,15 +15,17 @@ final class AuthManager{
         static let clientID = "42157579101c4d5ba3cd04ef455e46b0"
         static let clientSecret = "6ea5624768cf41a0b02aa3753b67d8be"
         static let tokenAPIURL = "https://accounts.spotify.com/api/token"
+        static let redirectURI = "https://m.facebook.com/jason.haque.3"
+        static let scopes = "user-read-private%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-library-modify%20user-library-read%20user-read-email"
     }
     
     private init(){}
     
     public var signInURL : URL? {
         let base = "https://accounts.spotify.com/authorize"
-        let scopes = "user-read-private"
-        let redirectURI = "https://m.facebook.com/jason.haque.3"
-        let string = "\(base)?response_type=code&client_id=\(Constants.clientID)&scope=\(scopes)&redirect_uri=\(redirectURI)&show_dialog=TRUE"
+        
+        
+        let string = "\(base)?response_type=code&client_id=\(Constants.clientID)&scope=\(Constants.scopes)&redirect_uri=\(Constants.redirectURI)&show_dialog=TRUE"
         
         return URL(string: string)
     }
@@ -67,7 +69,7 @@ final class AuthManager{
         components.queryItems = [
             URLQueryItem(name: "grant_type", value: "authorization_code"),
             URLQueryItem(name: "code", value: code),
-            URLQueryItem(name: "redirect_uri", value: "https://m.facebook.com/jason.haque.3"),
+            URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),
         ]
         
         //create a request
