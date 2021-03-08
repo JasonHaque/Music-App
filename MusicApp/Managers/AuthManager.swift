@@ -29,23 +29,30 @@ final class AuthManager{
     }
     
     var isSignedIn : Bool {
-        return false
+        return accessToken != nil
     }
     
     private var accessToken : String? {
-        return nil
+        return UserDefaults.standard.string(forKey: "access_token")
     }
     
     private var refreshToken : String? {
-        return nil
+        return UserDefaults.standard.string(forKey: "refresh_token")
     }
     
     private var tokenExpirationDate : Date?{
-        return nil
+        return UserDefaults.standard.object(forKey: "expiration_date") as? Date
     }
     
     private var shouldRefreshToken : Bool {
-        return false
+        
+        guard let expirationDate = tokenExpirationDate else {
+            return false
+        }
+        
+        let currentDate = Date()
+        let fiveMinutes : TimeInterval = 300
+        return currentDate.addingTimeInterval(fiveMinutes) >= expirationDate
     }
     
     public func exchangeCodeForToken(code : String, completion : @escaping ((Bool)-> Void)){
@@ -79,7 +86,7 @@ final class AuthManager{
         }
         request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
         
-        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+        let task = URLSession.shared.dataTask(with: request) {[weak self] data, _, error in
             
             guard let data = data , error == nil else{
                 print("Error Fetching data using urlsession")
@@ -90,7 +97,13 @@ final class AuthManager{
             do{
                 let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 
+                let result = try JSONDecoder().decode(AuthResponse.self, from: data)
+                self?.cacheToken(result : result)
+                
+                
                 print("Success : \(json)")
+                
+                completion(true)
             }
             catch{
                 print("Error Parsing JSON")
@@ -104,7 +117,11 @@ final class AuthManager{
         
     }
     
-    private func cacheToken(){
+    private func cacheToken(result : AuthResponse){
+        
+        UserDefaults.standard.set(result.access_token, forKey: "access_token")
+        UserDefaults.standard.set(result.refresh_token, forKey: "refresh_token")
+        UserDefaults.standard.set(Date().addingTimeInterval(TimeInterval(result.expires_in)), forKey: "expiration_date")
         
     }
     
