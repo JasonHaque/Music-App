@@ -132,7 +132,27 @@ final class AuthManager{
         
     }
     
-    public func withValidToken(){
+    public func withValidToken(completion : @escaping (String)-> Void){
+        
+        if shouldRefreshToken{
+            //refresh the token
+            
+            refreshAccessTokenIfNeeded {[weak self] success in
+                
+                
+                if let token = self?.accessToken, success {
+                    
+                    completion(token)
+                }
+                
+                
+            }
+        }
+        
+        else if let token = accessToken {
+            
+            completion(token)
+        }
         
     }
     
