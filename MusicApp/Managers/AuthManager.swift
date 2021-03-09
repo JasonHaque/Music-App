@@ -132,12 +132,17 @@ final class AuthManager{
         
     }
     
-    func refreshAccessTokenIfNeeded(completion : @escaping (Bool) -> Void){
+    public func withValidToken(){
         
-//        guard shouldRefreshToken else{
-//            completion(true)
-//            return
-//        }
+    }
+    
+    
+    public func refreshAccessTokenIfNeeded(completion : @escaping (Bool) -> Void){
+        
+        guard shouldRefreshToken else{
+            completion(true)
+            return
+        }
         
         guard let refreshToken = self.refreshToken else {
             return
