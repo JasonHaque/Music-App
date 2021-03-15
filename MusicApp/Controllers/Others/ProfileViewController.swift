@@ -81,6 +81,8 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         headerView.addSubview(imageView)
         imageView.center = headerView.center
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = imageSize/2
         imageView.sd_setImage(with: url, completed: nil)
         tableView.tableHeaderView = headerView
     }
