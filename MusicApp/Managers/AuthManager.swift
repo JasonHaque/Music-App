@@ -11,6 +11,8 @@ final class AuthManager{
     
     static let shared = AuthManager()
     
+    private var refreshinToken = false
+    
     struct Constants{
         static let clientID = "42157579101c4d5ba3cd04ef455e46b0"
         static let clientSecret = "6ea5624768cf41a0b02aa3753b67d8be"
@@ -132,7 +134,15 @@ final class AuthManager{
         
     }
     
+    private var onRefreshBlocks = [((String)-> Void)]()
+    
+    ///Supplies valid tokens to be used in API calls
     public func withValidToken(completion : @escaping (String)-> Void){
+        
+        guard !refreshinToken else {
+            onRefreshBlocks.append(completion)
+            return
+        }
         
         if shouldRefreshToken{
             //refresh the token
@@ -159,6 +169,10 @@ final class AuthManager{
     
     public func refreshAccessTokenIfNeeded(completion : @escaping (Bool) -> Void){
         
+        guard !refreshinToken else {
+            return
+        }
+        
         guard shouldRefreshToken else{
             completion(true)
             return
@@ -171,6 +185,8 @@ final class AuthManager{
         guard let url = URL(string: Constants.tokenAPIURL) else{
             return
         }
+        
+        refreshinToken = true
         //oauth stuff
         
         var components = URLComponents()
@@ -197,6 +213,8 @@ final class AuthManager{
         
         let task = URLSession.shared.dataTask(with: request) {[weak self] data, _, error in
             
+            self?.refreshinToken = false
+            
             guard let data = data , error == nil else{
                 print("Error Fetching data using urlsession")
                 completion(false)
@@ -209,6 +227,8 @@ final class AuthManager{
                 let result = try JSONDecoder().decode(AuthResponse.self, from: data)
                 
                 print("Successfully refreshed token")
+                self?.onRefreshBlocks.forEach{ $0(result.access_token) }
+                self?.onRefreshBlocks.removeAll()
                 self?.cacheToken(result : result)
                 
                 

@@ -14,7 +14,11 @@ final class APICaller{
     private init(){}
     
     public func getCurrentUserProfile(completion : @escaping (Result<UserProfile,Error>) -> Void){
-        
+        AuthManager.shared.withValidToken { token in
+            
+            //code to be done
+            
+        }
     }
     
 }
