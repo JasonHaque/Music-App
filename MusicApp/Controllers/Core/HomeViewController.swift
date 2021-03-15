@@ -20,8 +20,8 @@ class HomeViewController: UIViewController {
     
     
     @objc private func didTapSettings(){
-        let vc = ProfileViewController()
-        vc.title = "Profile"
+        let vc = SettingsViewController()
+        vc.title = "Settings"
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
