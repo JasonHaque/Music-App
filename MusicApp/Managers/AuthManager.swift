@@ -167,14 +167,14 @@ final class AuthManager{
     }
     
     
-    public func refreshAccessTokenIfNeeded(completion : @escaping (Bool) -> Void){
+    public func refreshAccessTokenIfNeeded(completion : ((Bool) -> Void)?){
         
         guard !refreshinToken else {
             return
         }
         
         guard shouldRefreshToken else{
-            completion(true)
+            completion?(true)
             return
         }
         
@@ -206,7 +206,7 @@ final class AuthManager{
         let data = basicToken.data(using: .utf8)
         guard let base64String = data?.base64EncodedString() else{
             print("Failed to get base 64")
-            completion(false)
+            completion?(false)
             return
         }
         request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
@@ -217,7 +217,7 @@ final class AuthManager{
             
             guard let data = data , error == nil else{
                 print("Error Fetching data using urlsession")
-                completion(false)
+                completion?(false)
                 return
             }
             
@@ -232,7 +232,7 @@ final class AuthManager{
                 self?.cacheToken(result : result)
                 
                 
-                completion(true)
+                completion?(true)
             }
             catch{
                 print("Error Parsing JSON")
