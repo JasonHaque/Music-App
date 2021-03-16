@@ -16,8 +16,23 @@ class HomeViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(didTapSettings))
         
+        fetchData()
+        
     }
     
+    private func fetchData(){
+        APICaller.shared.getAllNewReleases { result in
+            
+            switch result{
+            
+            case .success(let model):
+                break
+            case .failure(let error):
+                break
+            }
+            
+        }
+    }
     
     @objc private func didTapSettings(){
         let vc = SettingsViewController()
