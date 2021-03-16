@@ -76,7 +76,7 @@ final class APICaller{
         
     }
     
-    public func getFeaturedPlayLists(completion : @escaping ((Result<String,Error>)->Void)){
+    public func getFeaturedPlayLists(completion : @escaping ((Result<FeaturedPlaylistResponse,Error>)->Void)){
         
         createRequest(with: URL(string: Constants.baseAPIURL + "/browse/featured-playlists?limit=2"), type: .GET) { request in
             
@@ -88,12 +88,12 @@ final class APICaller{
                 }
                 
                 do{
-                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                        //try JSONDecoder().decode(NewReleasesResponse.self, from: data)
+                    let result = try JSONDecoder().decode(FeaturedPlaylistResponse.self, from: data)
                     print(result)
-                    //completion(.success(result))
+                    completion(.success(result))
                 }
                 catch{
+                    print("failed to get the data")
                     completion(.failure(error))
                 }
                 
