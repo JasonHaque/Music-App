@@ -21,7 +21,7 @@ class HomeViewController: UIViewController {
     }
     
     private func fetchData(){
-        APICaller.shared.getFeaturedPlayLists { result in
+        APICaller.shared.getRecommendations { result in
             
             switch result{
             
