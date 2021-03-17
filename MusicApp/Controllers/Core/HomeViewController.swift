@@ -21,7 +21,7 @@ class HomeViewController: UIViewController {
     }
     
     private func fetchData(){
-        APICaller.shared.getRecommendations { result in
+        APICaller.shared.getRecommendedGenres { result in
             
             switch result{
             
