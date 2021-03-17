@@ -26,7 +26,19 @@ class HomeViewController: UIViewController {
             switch result{
             
             case .success(let model):
-                break
+                let genres = model.genres
+                var seeds = Set<String>()
+                
+                while seeds.count < 5 {
+                    if let random = genres.randomElement() {
+                        seeds.insert(random)
+                    }
+                    
+                }
+                
+                APICaller.shared.getRecommendations(genres: seeds) { result in
+                    
+                }
             case .failure(let error):
                 break
             }
