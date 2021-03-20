@@ -11,10 +11,18 @@ class HomeViewController: UIViewController {
     
     private var collectionView : UICollectionView = UICollectionView(frame: .zero,
                                                                      collectionViewLayout:  UICollectionViewCompositionalLayout { sectionIndex, _  -> NSCollectionLayoutSection? in
-                                   
-                                                                          return Self.createSectionLayout(index: sectionIndex)
-                               })
-
+                                                                        
+                                                                        return HomeViewController.createSectionLayout(index: sectionIndex)})
+    
+    private let spinner : UIActivityIndicatorView = {
+        
+        let spinner = UIActivityIndicatorView()
+        spinner.tintColor = .label
+        spinner.hidesWhenStopped = true
+        return spinner
+        
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,8 +32,9 @@ class HomeViewController: UIViewController {
         
         
         
-       configureCollectionView()
-       
+        configureCollectionView()
+        
+        view.addSubview(spinner)
         
         fetchData()
         
@@ -90,8 +99,8 @@ class HomeViewController: UIViewController {
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
-
-
+    
+    
 }
 
 
