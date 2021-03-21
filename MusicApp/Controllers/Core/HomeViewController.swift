@@ -212,7 +212,7 @@ extension HomeViewController : UICollectionViewDataSource , UICollectionViewDele
                 return UICollectionViewCell()
             }
             let viewmodel = viewModels[indexPath.row]
-            cell.backgroundColor = .red
+            cell.configure(with: viewmodel)
             return cell
             
         case .featuredPlayLists(let viewModels):
