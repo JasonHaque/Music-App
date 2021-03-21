@@ -133,6 +133,10 @@ class HomeViewController: UIViewController {
             
         }
         
+        group.notify(queue: .main) {
+            
+        }
+        
         //configure models
         sections.append(.newReleases(viewModel: []))
         sections.append(.featuredPlayLists(viewModel: []))
