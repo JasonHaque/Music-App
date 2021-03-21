@@ -9,9 +9,9 @@
 import UIKit
 
 enum BrowseSectionType{
-    case newReleases
-    case featuredPlayLists
-    case recommendedTracks
+    case newReleases(viewModel : [NewReleasesCellViewModel])
+    case featuredPlayLists(viewModel : [NewReleasesCellViewModel])
+    case recommendedTracks(viewModel : [NewReleasesCellViewModel])
     
 }
 
@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
         return spinner
         
     }()
-    
+    private var sections = [BrowseSectionType]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,7 +68,38 @@ class HomeViewController: UIViewController {
     
     private func fetchData(){
         
-        //GEttings recommended tracks , featured playlists and new releases
+        //calling dispatchGroup for concurrent operation
+        
+        let group = DispatchGroup()
+        group.enter()
+        group.enter()
+        group.enter()
+        
+        //getting new releases
+        
+        APICaller.shared.getAllNewReleases { result in
+            defer{
+                group.leave()
+            }
+            switch result{
+            case .success(let model): break
+            case .failure(let error): break
+            }
+        }
+        
+        //getting featured playlists
+        
+        APICaller.shared.getFeaturedPlayLists { result in
+            defer{
+                group.leave()
+            }
+            switch result {
+            case .success(let model): break
+            case .failure(let error): break
+            }
+        }
+        
+        //GEttings recommended tracks
         APICaller.shared.getRecommendedGenres { result in
             
             switch result{
@@ -84,7 +115,16 @@ class HomeViewController: UIViewController {
                     
                 }
                 
-                APICaller.shared.getRecommendations(genres: seeds) { result in
+                APICaller.shared.getRecommendations(genres: seeds) { recommendedResult in
+                    
+                    defer{
+                        group.leave()
+                    }
+                    
+                    switch recommendedResult{
+                    case .success(let recommendedModel): break
+                    case .failure(let error): break
+                    }
                     
                 }
             case .failure(let error):
@@ -92,6 +132,11 @@ class HomeViewController: UIViewController {
             }
             
         }
+        
+        //configure models
+        sections.append(.newReleases(viewModel: []))
+        sections.append(.featuredPlayLists(viewModel: []))
+        sections.append(.recommendedTracks(viewModel: []))
     }
     
     @objc private func didTapSettings(){
@@ -108,7 +153,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController : UICollectionViewDataSource , UICollectionViewDelegate{
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
