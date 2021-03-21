@@ -159,9 +159,7 @@ class HomeViewController: UIViewController {
     
     private func configureModels(newAlbums : [Album],playlists : [Playlist],tracks : [AudioTrack]){
         
-        print(newAlbums.count)
-        print(playlists.count)
-        print(tracks.count)
+        
         //configure models
         sections.append(.newReleases(viewModel: newAlbums.compactMap({
             return NewReleasesCellViewModel(name: $0.name, artworkURL: URL(string: $0.images.first?.url ?? "") , numberOfTracks: $0.total_tracks, artistName: $0.artists.first?.name ?? "-")
