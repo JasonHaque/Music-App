@@ -75,6 +75,10 @@ class HomeViewController: UIViewController {
         group.enter()
         group.enter()
         
+        var newReleases : NewReleasesResponse?
+        var featuredPlayList : FeaturedPlaylistResponse?
+        var recommendedTracks : RecommendationsResponse?
+        
         //getting new releases
         
         APICaller.shared.getAllNewReleases { result in
@@ -82,8 +86,10 @@ class HomeViewController: UIViewController {
                 group.leave()
             }
             switch result{
-            case .success(let model): break
-            case .failure(let error): break
+            case .success(let model):
+                newReleases = model
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
         
@@ -94,8 +100,10 @@ class HomeViewController: UIViewController {
                 group.leave()
             }
             switch result {
-            case .success(let model): break
-            case .failure(let error): break
+            case .success(let model):
+                featuredPlayList = model
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
         
@@ -122,23 +130,38 @@ class HomeViewController: UIViewController {
                     }
                     
                     switch recommendedResult{
-                    case .success(let recommendedModel): break
-                    case .failure(let error): break
+                    case .success(let recommendedModel):
+                        recommendedTracks = recommendedModel
+                    case .failure(let error):
+                        print(error.localizedDescription)
                     }
                     
                 }
             case .failure(let error):
-                break
+                print(error.localizedDescription)
             }
             
         }
         
         group.notify(queue: .main) {
             
+            guard let newAlbums = newReleases?.albums.items ,
+                  let playlists = featuredPlayList?.playlists.items,
+                  let tracks = recommendedTracks?.tracks else{
+                return
+            }
+            self.configureModels(newAlbums: newAlbums, playlists: playlists, tracks: tracks)
+            
         }
         
+        
+    }
+    
+    private func configureModels(newAlbums : [Album],playlists : [Playlist],tracks : [AudioTrack]){
         //configure models
-        sections.append(.newReleases(viewModel: []))
+        sections.append(.newReleases(viewModel: newAlbums.compactMap({
+            return NewReleasesCellViewModel(name: $0.name, artworkURL: URL(string: $0.images.first?.url ?? "") , numberOfTracks: $0.total_tracks, artistName: $0.artists.first?.name ?? "-")
+        })))
         sections.append(.featuredPlayLists(viewModel: []))
         sections.append(.recommendedTracks(viewModel: []))
     }
@@ -161,7 +184,18 @@ extension HomeViewController : UICollectionViewDataSource , UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 13
+        let type = sections[section]
+        
+        switch type {
+        case .newReleases(let viewModel):
+            return viewModel.count
+        case .featuredPlayLists(let viewModel):
+            return viewModel.count
+        case .recommendedTracks(let viewModel):
+            return viewModel.count
+        }
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
