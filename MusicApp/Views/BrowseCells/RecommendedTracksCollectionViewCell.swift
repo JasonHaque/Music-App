@@ -11,39 +11,36 @@ class RecommendedTracksCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "RecommendedTracksCollectionViewCell"
     
-    private let playlistCoverImageView : UIImageView = {
+    private let albumCoverImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "photo")
-        imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 8
         imageView.contentMode = .scaleAspectFill
         
         return imageView
     }()
     
-    private let playlistNameLabel : UILabel = {
+    private let trackNameLabel : UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18,weight : .regular)
         label.numberOfLines = 0
-        label.textAlignment = .center
         return label
     }()
     
-    private let creatorNameLabel : UILabel = {
+    private let artistNameLabel : UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15,weight : .thin)
         label.numberOfLines = 0
-        label.textAlignment = .center
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .secondarySystemBackground
-        contentView.addSubview(playlistCoverImageView)
-        contentView.addSubview(playlistNameLabel)
+        backgroundColor = .secondarySystemBackground
+        contentView.addSubview(albumCoverImageView)
+        contentView.addSubview(trackNameLabel)
         contentView.clipsToBounds = true
-        contentView.addSubview(creatorNameLabel)
+        contentView.addSubview(artistNameLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -53,27 +50,25 @@ class RecommendedTracksCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        creatorNameLabel.frame = CGRect(x: 3, y: contentView.height-30, width: contentView.width-6, height: 30)
+        albumCoverImageView.frame = CGRect(x: 5, y: 2, width: contentView.height-4, height: contentView.height-4)
         
-        playlistNameLabel.frame = CGRect(x: 3, y: contentView.height-60, width: contentView.width-6, height: 30)
-        
-        let imageSize = contentView.height-70
-        playlistCoverImageView.frame = CGRect(x: (contentView.width-imageSize)/2, y: 3, width: imageSize, height: imageSize)
+        trackNameLabel.frame = CGRect(x: albumCoverImageView.right+10, y: 0, width: contentView.width-albumCoverImageView.right-15, height: contentView.height/2)
+        artistNameLabel.frame = CGRect(x: albumCoverImageView.right+10, y: contentView.height/2, width: contentView.width-albumCoverImageView.right-15, height: contentView.height/2)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        playlistNameLabel.text = nil
-        creatorNameLabel.text = nil
-        playlistCoverImageView.image = nil
+        trackNameLabel.text = nil
+        artistNameLabel.text = nil
+        albumCoverImageView.image = nil
     }
     
-    func configure(with viewModel : FeaturedPlayListCellViewModel){
+    func configure(with viewModel : RecommendedTrackCellViewModel){
         
-        playlistNameLabel.text = viewModel.name
-        creatorNameLabel.text = viewModel.creatorName
-        playlistCoverImageView.sd_setImage(with: viewModel.artWorkURL, completed: nil)
+        trackNameLabel.text = viewModel.name
+        artistNameLabel.text = viewModel.artistName
+        albumCoverImageView.sd_setImage(with: viewModel.artWorkURL, completed: nil)
         
         
     }
