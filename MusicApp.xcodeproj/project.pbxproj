@@ -37,6 +37,8 @@
 		8DB7C1E5260688CD00EE7592 /* FeaturedPlayListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB7C1E4260688CD00EE7592 /* FeaturedPlayListCollectionViewCell.swift */; };
 		8DB7C1E82606892400EE7592 /* RecommendedTracksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB7C1E72606892400EE7592 /* RecommendedTracksCollectionViewCell.swift */; };
 		8DB7C1EB2607AEE700EE7592 /* NewReleasesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB7C1EA2607AEE700EE7592 /* NewReleasesCellViewModel.swift */; };
+		8DB7C1EE2609040C00EE7592 /* FeaturedPlayListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB7C1ED2609040C00EE7592 /* FeaturedPlayListCellViewModel.swift */; };
+		8DB7C1F12609054000EE7592 /* RecommendedTrackCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB7C1F02609053F00EE7592 /* RecommendedTrackCellViewModel.swift */; };
 		8DD67E0D25DDA53C00B839C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD67E0C25DDA53C00B839C0 /* AppDelegate.swift */; };
 		8DD67E0F25DDA53C00B839C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD67E0E25DDA53C00B839C0 /* SceneDelegate.swift */; };
 		8DD67E1125DDA53C00B839C0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD67E1025DDA53C00B839C0 /* HomeViewController.swift */; };
@@ -75,6 +77,8 @@
 		8DB7C1E4260688CD00EE7592 /* FeaturedPlayListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedPlayListCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DB7C1E72606892400EE7592 /* RecommendedTracksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedTracksCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DB7C1EA2607AEE700EE7592 /* NewReleasesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReleasesCellViewModel.swift; sourceTree = "<group>"; };
+		8DB7C1ED2609040C00EE7592 /* FeaturedPlayListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedPlayListCellViewModel.swift; sourceTree = "<group>"; };
+		8DB7C1F02609053F00EE7592 /* RecommendedTrackCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedTrackCellViewModel.swift; sourceTree = "<group>"; };
 		8DD67E0925DDA53C00B839C0 /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD67E0C25DDA53C00B839C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DD67E0E25DDA53C00B839C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				8DB7C1EA2607AEE700EE7592 /* NewReleasesCellViewModel.swift */,
+				8DB7C1ED2609040C00EE7592 /* FeaturedPlayListCellViewModel.swift */,
+				8DB7C1F02609053F00EE7592 /* RecommendedTrackCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -385,10 +391,12 @@
 				8DB69EBC25EE907100988292 /* Extensions.swift in Sources */,
 				8D55908025ECF69200F88D9C /* LibraryViewController.swift in Sources */,
 				8D5590A925ECF96A00F88D9C /* Artist.swift in Sources */,
+				8DB7C1EE2609040C00EE7592 /* FeaturedPlayListCellViewModel.swift in Sources */,
 				8DB69F1325FFD79600988292 /* SettingsModels.swift in Sources */,
 				8D55909425ECF86000F88D9C /* PlaylistViewController.swift in Sources */,
 				8DD67E0F25DDA53C00B839C0 /* SceneDelegate.swift in Sources */,
 				8D55909125ECF85600F88D9C /* PlayerViewController.swift in Sources */,
+				8DB7C1F12609054000EE7592 /* RecommendedTrackCellViewModel.swift in Sources */,
 				8D55909D25ECF8F200F88D9C /* APICaller.swift in Sources */,
 				8D55908B25ECF84200F88D9C /* SettingsViewController.swift in Sources */,
 				8DB69F2E260248B700988292 /* RecommendedGenresResponse.swift in Sources */,
