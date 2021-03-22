@@ -224,7 +224,8 @@ extension HomeViewController : UICollectionViewDataSource , UICollectionViewDele
             else {
                 return UICollectionViewCell()
             }
-            cell.backgroundColor = .blue
+            let viewModel = viewModels[indexPath.row]
+            cell.configure(with: viewModel)
             return cell
             
             
