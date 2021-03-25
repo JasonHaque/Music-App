@@ -50,6 +50,35 @@ final class APICaller{
     
     //MARK: - Playlists
     
+    public func getPlayListDetails(for playlist : Playlist, completion : @escaping ((Result<AlbumDetailsResponse,Error>)->Void)){
+        
+        createRequest(with: URL(string: Constants.baseAPIURL+"/playlists/"+playlist.id), type: .GET) { request in
+            
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                
+                guard let data = data , error == nil else{
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                
+                do{
+                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                        //JSONDecoder().decode(AlbumDetailsResponse.self, from: data)
+                    
+                    print(result)
+                    //completion(.success(result))
+                }
+                catch{
+                    print("Somthing went wrong \(error.localizedDescription)")
+                    completion(.failure(error))
+                }
+                
+            }
+            task.resume()
+        }
+        
+    }
+    
     
     
     //MARK: - Profile
