@@ -31,6 +31,9 @@ class HomeViewController: UIViewController {
         
     }()
     private var sections = [BrowseSectionType]()
+    private var newAlbums : [Album] = []
+    private var playlists : [Playlist] = []
+    private var tracks : [AudioTrack] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -159,6 +162,11 @@ class HomeViewController: UIViewController {
     
     private func configureModels(newAlbums : [Album],playlists : [Playlist],tracks : [AudioTrack]){
         
+        //saving the properties
+        
+        self.newAlbums = newAlbums
+        self.playlists = playlists
+        self.tracks = tracks
         
         //configure models
         sections.append(.newReleases(viewModel: newAlbums.compactMap({
@@ -242,6 +250,22 @@ extension HomeViewController : UICollectionViewDataSource , UICollectionViewDele
         }
         
        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let section = sections[indexPath.section]
+        
+        switch section{
+        
+        case .newReleases:
+            break
+        case .featuredPlayLists:
+            break
+        case .recommendedTracks:
+            break
+        }
     }
     
      static func createSectionLayout(index : Int)-> NSCollectionLayoutSection {
