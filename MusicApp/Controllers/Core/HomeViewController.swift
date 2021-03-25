@@ -176,7 +176,7 @@ class HomeViewController: UIViewController {
             return FeaturedPlayListCellViewModel(name: $0.name, artWorkURL: URL(string: $0.images.first?.url ?? "" ) , creatorName: $0.owner.display_name)
         })))
         sections.append(.recommendedTracks(viewModel: tracks.compactMap({
-            return RecommendedTrackCellViewModel(name: $0.name, artistName: $0.artists.first?.name ?? "-", artWorkURL: URL(string: $0.album.images.first?.url ?? ""))
+            return RecommendedTrackCellViewModel(name: $0.name, artistName: $0.artists.first?.name ?? "-", artWorkURL: URL(string: $0.album?.images.first?.url ?? ""))
         })))
         collectionView.reloadData()
     }
