@@ -71,6 +71,13 @@ class PlaylistViewController: UIViewController {
             }
             
         }
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didtapShare))
+        
+    }
+    
+    @objc private func didtapShare(){
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -104,10 +111,19 @@ extension PlaylistViewController : UICollectionViewDelegate, UICollectionViewDat
         
         let headerViewModel = PlayListHeaderViewModel(playListName: playlist.name, ownerName: playlist.owner.display_name, description: playlist.description, artWorkURL: URL(string :playlist.images.first?.url ?? ""))
         header.configure(with: headerViewModel)
+        header.delegate = self
         return header
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
+}
+
+extension PlaylistViewController : PlaylistHeaderCollectionReusableViewDelegate{
+    func PlaylistHeaderCollectionReusableViewDidTapPlayAll(_ header: PlaylistHeaderCollectionReusableView) {
+        print("Playing ALL........")
+    }
+    
+    
 }
