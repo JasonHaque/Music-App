@@ -57,7 +57,10 @@ class PlaylistViewController: UIViewController {
                     
                     case .success(let model):
                         // create view models
-                        break
+                        self?.viewModels = model.tracks.items.compactMap({
+                            RecommendedTrackCellViewModel(name: $0.track.name, artistName: $0.track.artists.first?.name ?? "-", artWorkURL: URL(string : $0.track.album?.images.first?.url ?? ""))
+                        })
+                        self?.collectionView.reloadData()
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
@@ -79,7 +82,7 @@ extension PlaylistViewController : UICollectionViewDelegate, UICollectionViewDat
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return viewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -87,7 +90,7 @@ extension PlaylistViewController : UICollectionViewDelegate, UICollectionViewDat
             return UICollectionViewCell()
         }
         cell.backgroundColor = .red
-        //cell.configure(with: viewModels[indexPath.row])
+        cell.configure(with: viewModels[indexPath.row])
         return cell
     }
     
