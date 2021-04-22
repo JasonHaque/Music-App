@@ -101,7 +101,9 @@ extension PlaylistViewController : UICollectionViewDelegate, UICollectionViewDat
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlaylistHeaderCollectionReusableView.identifier, for: indexPath) as? PlaylistHeaderCollectionReusableView , kind == UICollectionView.elementKindSectionHeader else{
             return UICollectionReusableView()
         }
-        //header.configure()
+        
+        let headerViewModel = PlayListHeaderViewModel(playListName: playlist.name, ownerName: playlist.owner.display_name, description: playlist.description, artWorkURL: URL(string :playlist.images.first?.url ?? ""))
+        header.configure(with: headerViewModel)
         return header
     }
     
