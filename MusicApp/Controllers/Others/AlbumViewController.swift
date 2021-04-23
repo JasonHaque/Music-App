@@ -37,7 +37,7 @@ class AlbumViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var viewModels = [RecommendedTrackCellViewModel]()
+    private var viewModels = [AlbumCollectionViewModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,7 @@ class AlbumViewController: UIViewController {
                 
                 case .success(let model):
                     self?.viewModels = model.tracks.items.compactMap({
-                        RecommendedTrackCellViewModel(name: $0.name, artistName: $0.artists.first?.name ?? "-", artWorkURL: URL(string : $0.album?.images.first?.url ?? ""))
+                        AlbumCollectionViewModel(name: $0.name, artistName: $0.artists.first?.name ?? "-")
                     })
                     self?.collectionView.reloadData()
                 break
