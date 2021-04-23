@@ -110,7 +110,7 @@ extension AlbumViewController : UICollectionViewDelegate, UICollectionViewDataSo
             return UICollectionReusableView()
         }
         
-        let headerViewModel = PlayListHeaderViewModel(playListName: album.name, ownerName: album.artists.first?.name, description: "Release Date : \(album.release_date)", artWorkURL: URL(string :album.images.first?.url ?? ""))
+        let headerViewModel = PlayListHeaderViewModel(playListName: album.name, ownerName: album.artists.first?.name, description: "Release Date : \(String.formattedDate(string: album.release_date))", artWorkURL: URL(string :album.images.first?.url ?? ""))
         header.configure(with: headerViewModel)
         header.delegate = self
         return header
