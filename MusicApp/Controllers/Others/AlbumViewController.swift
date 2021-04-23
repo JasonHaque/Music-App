@@ -58,9 +58,10 @@ class AlbumViewController: UIViewController {
                 switch result{
                 
                 case .success(let model):
-//                    self?.viewModels = model.tracks.items.compactMap({
-//                        RecommendedTrackCellViewModel(name: $0.track.name, artistName: $0.track.artists.first?.name ?? "-", artWorkURL: URL(string : $0.track.album?.images.first?.url ?? ""))
-//                    })
+                    self?.viewModels = model.tracks.items.compactMap({
+                        RecommendedTrackCellViewModel(name: $0.name, artistName: $0.artists.first?.name ?? "-", artWorkURL: URL(string : $0.album?.images.first?.url ?? ""))
+                    })
+                    self?.collectionView.reloadData()
                 break
                     
                 case .failure(let error):
@@ -109,9 +110,9 @@ extension AlbumViewController : UICollectionViewDelegate, UICollectionViewDataSo
             return UICollectionReusableView()
         }
         
-//        let headerViewModel = PlayListHeaderViewModel(playListName: playlist.name, ownerName: playlist.owner.display_name, description: playlist.description, artWorkURL: URL(string :playlist.images.first?.url ?? ""))
-//        header.configure(with: headerViewModel)
-//        header.delegate = self
+        let headerViewModel = PlayListHeaderViewModel(playListName: album.name, ownerName: album.artists.first?.name, description: "Release Date : \(album.release_date)", artWorkURL: URL(string :album.images.first?.url ?? ""))
+        header.configure(with: headerViewModel)
+        header.delegate = self
         return header
     }
     
