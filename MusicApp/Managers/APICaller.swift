@@ -223,6 +223,68 @@ final class APICaller{
         }
     }
     
+    //MARK:- Categories
+    
+    public func getCategories(completion : @escaping (Result<String,APIError>)-> Void){
+        
+        createRequest(with: URL(string: Constants.baseAPIURL + "/browse/categories?limit=2"), type: .GET) { request in
+            
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                
+                guard let data = data , error == nil else{
+                    completion(.failure(.failedToGetData))
+                    return
+                }
+                
+                do{
+                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    
+                    print(result)
+                }
+                catch{
+                    
+                    print(error.localizedDescription)
+                    
+                    completion(.failure(.failedToGetData))
+                }
+                
+            }
+            task.resume()
+        }
+        
+    }
+    public func getCategoryPlayLists(completion : @escaping (Result<Playlist,APIError>)-> Void){
+        
+        createRequest(with: URL(string: Constants.baseAPIURL + "/browse/categories/\("id")?limit=2"), type: .GET) { request in
+            
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                
+                guard let data = data , error == nil else{
+                    completion(.failure(.failedToGetData))
+                    return
+                }
+                
+                do{
+                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    
+                    print(result)
+                }
+                catch{
+                    
+                    print(error.localizedDescription)
+                    
+                    completion(.failure(.failedToGetData))
+                }
+                
+            }
+            task.resume()
+        }
+        
+    }
+    
+    
+    
+    //MARK:- Enums and useful methods
     enum HTTPMethod : String{
         
         case GET
