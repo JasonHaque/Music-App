@@ -255,9 +255,9 @@ final class APICaller{
         }
         
     }
-    public func getCategoryPlayLists(category : Category, completion : @escaping (Result<Playlist,APIError>)-> Void){
+    public func getCategoryPlayLists(category : Category, completion : @escaping (Result<[Playlist],APIError>)-> Void){
         
-        createRequest(with: URL(string: Constants.baseAPIURL + "/browse/categories/\(category.id)?limit=2"), type: .GET) { request in
+        createRequest(with: URL(string: Constants.baseAPIURL + "/browse/categories/\(category.id)/playlists?limit=2"), type: .GET) { request in
             
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
                 
@@ -267,9 +267,12 @@ final class APICaller{
                 }
                 
                 do{
-                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    let result = try JSONDecoder().decode(CategoryPlaylistResponse.self, from: data)
+                        //JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    let playlists = result.playlists.items
+                    //print(result)
                     
-                    print(result)
+                    completion(.success(playlists))
                 }
                 catch{
                     

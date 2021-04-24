@@ -46,10 +46,20 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
             DispatchQueue.main.async {
                 switch result{
                 
-                case .success(let model):
-                    break
+                case .success(let models):
+                    let first = models.first!
+                    
+                    APICaller.shared.getCategoryPlayLists(category: first) { success in
+                        switch success{
+                            
+                        case .success(_):
+                            break
+                        case .failure(_):
+                            break
+                        }
+                    }
                 case .failure(let error):
-                    break
+                    print(error)
                 }
             }
         }
