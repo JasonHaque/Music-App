@@ -26,9 +26,22 @@ class GenreCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    private let colors : [UIColor] = [
+        .systemPink,
+        .systemRed,
+        .systemTeal,
+        .systemPurple,
+        .systemOrange,
+        .systemGreen,
+        .systemBlue,
+        .systemYellow,
+        .darkGray
+    ]
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemPurple
+        contentView.layer.cornerRadius = 8
+        contentView.layer.masksToBounds = true
         contentView.addSubview(imageView)
         contentView.addSubview(label)
     }
@@ -53,5 +66,7 @@ class GenreCollectionViewCell: UICollectionViewCell {
     
     func configure(with labelTitle : String){
         label.text = labelTitle
+        
+        contentView.backgroundColor = colors.randomElement()
     }
 }
