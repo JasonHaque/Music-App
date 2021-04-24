@@ -39,6 +39,20 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .systemBackground
+        
+        //Calling data from api caller
+        
+        APICaller.shared.getCategories {[weak self] result in
+            DispatchQueue.main.async {
+                switch result{
+                
+                case .success(let model):
+                    break
+                case .failure(let error):
+                    break
+                }
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
