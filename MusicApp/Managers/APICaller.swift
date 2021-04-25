@@ -291,7 +291,7 @@ final class APICaller{
     
     public func search(with query : String, completion : @escaping (Result<[String],APIError>)-> Void){
         
-        createRequest(with: URL(string: Constants.baseAPIURL+"/search?type=album,artist,playlist,track&q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"), type: .GET) { request in
+        createRequest(with: URL(string: Constants.baseAPIURL+"/search?limit=10&type=album,artist,playlist,track&q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"), type: .GET) { request in
             
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
                 

@@ -17,6 +17,7 @@
 		8D40CFBC2633F36F00B63751 /* AllCategoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40CFBB2633F36F00B63751 /* AllCategoriesResponse.swift */; };
 		8D40CFBF2633FBF200B63751 /* CategoryCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40CFBE2633FBF200B63751 /* CategoryCollectionViewModel.swift */; };
 		8D40CFC32633FF2800B63751 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40CFC22633FF2800B63751 /* CategoryViewController.swift */; };
+		8D50EC02263553DB001F9055 /* SearchResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D50EC01263553DB001F9055 /* SearchResultResponse.swift */; };
 		8D55907925ECF62900F88D9C /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55907825ECF62900F88D9C /* TabsViewController.swift */; };
 		8D55907D25ECF68500F88D9C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55907C25ECF68500F88D9C /* SearchViewController.swift */; };
 		8D55908025ECF69200F88D9C /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55907F25ECF69200F88D9C /* LibraryViewController.swift */; };
@@ -69,6 +70,7 @@
 		8D40CFBB2633F36F00B63751 /* AllCategoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCategoriesResponse.swift; sourceTree = "<group>"; };
 		8D40CFBE2633FBF200B63751 /* CategoryCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewModel.swift; sourceTree = "<group>"; };
 		8D40CFC22633FF2800B63751 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		8D50EC01263553DB001F9055 /* SearchResultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultResponse.swift; sourceTree = "<group>"; };
 		8D55907825ECF62900F88D9C /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		8D55907C25ECF68500F88D9C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8D55907F25ECF69200F88D9C /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				8DB7C1F7260D2EA000EE7592 /* AlbumDetailsResponse.swift */,
 				8DB7C1FA260D34F200EE7592 /* PlayListDetailsResponse.swift */,
 				8D40CFBB2633F36F00B63751 /* AllCategoriesResponse.swift */,
+				8D50EC01263553DB001F9055 /* SearchResultResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				8DB7C1E5260688CD00EE7592 /* FeaturedPlayListCollectionViewCell.swift in Sources */,
 				8DB7C1E82606892400EE7592 /* RecommendedTracksCollectionViewCell.swift in Sources */,
 				8D55907D25ECF68500F88D9C /* SearchViewController.swift in Sources */,
+				8D50EC02263553DB001F9055 /* SearchResultResponse.swift in Sources */,
 				8DB7C1EB2607AEE700EE7592 /* NewReleasesCellViewModel.swift in Sources */,
 				8D5590A325ECF95300F88D9C /* Playlist.swift in Sources */,
 				8D55909A25ECF8E100F88D9C /* AuthManager.swift in Sources */,

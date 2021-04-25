@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UISearchResultsUpdating {
+class SearchViewController: UIViewController, UISearchResultsUpdating,UISearchBarDelegate {
     
     let searchController : UISearchController = {
         let result = SearchResultsViewController()
@@ -35,6 +35,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
 
         view.backgroundColor = .systemBackground
         searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
         view.addSubview(collectionView)
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
@@ -67,15 +68,36 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
     
     
     //MARK:- search controller
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let resultsController = searchController.searchResultsController as? SearchResultsViewController, let query = searchController.searchBar.text, !query.trimmingCharacters(in: .whitespaces).isEmpty else{
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        guard let resultsController = searchController.searchResultsController as? SearchResultsViewController, let query = searchBar.text, !query.trimmingCharacters(in: .whitespaces).isEmpty else{
             
             return
         }
         
         print(query)
+        APICaller.shared.search(with: query) {[weak self] result in
+            
+            DispatchQueue.main.async {
+                switch result{
+                
+                case .success(let model):
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+           
+        }
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
         
         //perform the search
+        
+        
     }
     
    
