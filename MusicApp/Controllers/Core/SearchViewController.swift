@@ -76,6 +76,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating,UISearchBa
             return
         }
         
+        resultsController.delegate = self
+        
         print(query)
         APICaller.shared.search(with: query) {[weak self] result in
             
@@ -101,6 +103,32 @@ class SearchViewController: UIViewController, UISearchResultsUpdating,UISearchBa
     }
     
    
+}
+
+extension SearchViewController : SearchResultsViewControllerDelegate{
+    func didTapResult(_ result: SingleSearchResult) {
+        switch result{
+        
+        case .album(model: let model):
+            let vc = AlbumViewController(album: model)
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
+        case .artist(model: let model):
+            break
+        case .track(model: let model):
+            break
+        case .playlist(model: let model):
+            let vc = PlaylistViewController(playlist: model)
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
+            
+        }
+
+    }
+    
+    
+    
+    
 }
 
 

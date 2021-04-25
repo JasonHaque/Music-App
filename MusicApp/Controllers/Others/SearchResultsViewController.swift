@@ -12,9 +12,15 @@ struct SearchSection{
     let results : [SingleSearchResult]
 }
 
+protocol SearchResultsViewControllerDelegate : AnyObject{
+    func didTapResult(_ result : SingleSearchResult)
+}
+
 class SearchResultsViewController: UIViewController {
 
     private var sections : [SearchSection] = []
+    
+    weak var delegate : SearchResultsViewControllerDelegate?
     
     private let tableView : UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -111,22 +117,8 @@ extension SearchResultsViewController : UITableViewDelegate , UITableViewDataSou
         
         let result = sections[indexPath.section].results[indexPath.row]
         
+        delegate?.didTapResult(result)
         
-        switch result{
-        
-        case .album(model: let model):
-            let vc = AlbumViewController(album: model)
-            vc.navigationItem.largeTitleDisplayMode = .never
-            navigationController?.pushViewController(vc, animated: true)
-        case .artist(model: let model):
-            break
-        case .track(model: let model):
-            break
-        case .playlist(model: let model):
-            let vc = PlaylistViewController(playlist: model)
-            vc.navigationItem.largeTitleDisplayMode = .never
-            navigationController?.pushViewController(vc, animated: true)
-        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
