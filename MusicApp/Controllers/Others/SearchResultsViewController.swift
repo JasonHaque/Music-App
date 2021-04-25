@@ -46,8 +46,30 @@ class SearchResultsViewController: UIViewController {
             default : return false
             }
         })
+        let albums = results.filter({
+            switch $0{
+            case .album: return true
+            default : return false
+            }
+        })
+        let tracks = results.filter({
+            switch $0{
+            case .track: return true
+            default : return false
+            }
+        })
+        let playlists = results.filter({
+            switch $0{
+            case .playlist: return true
+            default : return false
+            }
+        })
         self.sections = [
-            SearchSection(title: "Artists", results: artists)
+            SearchSection(title: "Tracks", results: tracks),
+            SearchSection(title: "Artists", results: artists),
+            SearchSection(title: "PlayLists", results: playlists),
+            SearchSection(title: "Albums", results: albums)
+            
         ]
         tableView.reloadData()
         
@@ -82,6 +104,29 @@ extension SearchResultsViewController : UITableViewDelegate , UITableViewDataSou
         
         return cell
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let result = sections[indexPath.section].results[indexPath.row]
+        
+        
+        switch result{
+        
+        case .album(model: let model):
+            let vc = AlbumViewController(album: model)
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
+        case .artist(model: let model):
+            break
+        case .track(model: let model):
+            break
+        case .playlist(model: let model):
+            let vc = PlaylistViewController(playlist: model)
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
