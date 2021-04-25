@@ -7,12 +7,17 @@
 
 import UIKit
 
+struct SearchSection{
+    let title : String
+    let results : [SingleSearchResult]
+}
+
 class SearchResultsViewController: UIViewController {
 
-    private var results : [SingleSearchResult] = []
+    private var sections : [SearchSection] = []
     
     private let tableView : UITableView = {
-        let table = UITableView()
+        let table = UITableView(frame: .zero, style: .grouped)
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         table.isHidden = true
         return table
@@ -35,7 +40,15 @@ class SearchResultsViewController: UIViewController {
     }
 
     func update(with results : [SingleSearchResult]){
-        self.results = results
+        let artists = results.filter({
+            switch $0{
+            case .artist: return true
+            default : return false
+            }
+        })
+        self.sections = [
+            SearchSection(title: "Artists", results: artists)
+        ]
         tableView.reloadData()
         
         tableView.isHidden = results.isEmpty
@@ -44,17 +57,35 @@ class SearchResultsViewController: UIViewController {
 }
 
 extension SearchResultsViewController : UITableViewDelegate , UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sections.count
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        results.count
+        return sections[section].results.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let result = sections[indexPath.section].results[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "FOO"
+        
+        switch result{
+        
+        case .album(model: let model):
+            cell.textLabel?.text = model.name
+        case .artist(model: let model):
+            cell.textLabel?.text = model.name
+        case .track(model: let model):
+            cell.textLabel?.text = model.name
+        case .playlist(model: let model):
+            cell.textLabel?.text = model.name
+        }
+        
         return cell
         
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section].title
+    }
     
 }
