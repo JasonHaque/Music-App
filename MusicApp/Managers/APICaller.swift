@@ -289,7 +289,7 @@ final class APICaller{
     
     //MARK:- Search
     
-    public func search(with query : String, completion : @escaping (Result<[String],APIError>)-> Void){
+    public func search(with query : String, completion : @escaping (Result<[SingleSearchResult],APIError>)-> Void){
         
         createRequest(with: URL(string: Constants.baseAPIURL+"/search?limit=10&type=album,artist,playlist,track&q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"), type: .GET) { request in
             
@@ -304,8 +304,29 @@ final class APICaller{
                 do{
                     let result = try JSONDecoder().decode(SearchResultResponse.self, from: data)
                         //JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    var searchResults : [SingleSearchResult] = []
                     
-                    print(result)
+                    searchResults.append(contentsOf: result.tracks.items.compactMap({
+                        
+                        SingleSearchResult.track(model: $0)
+                    }))
+                    searchResults.append(contentsOf: result.albums.items.compactMap({
+                        
+                        SingleSearchResult.album(model: $0)
+                    }))
+                    
+                    searchResults.append(contentsOf: result.artists.items.compactMap({
+                        
+                        SingleSearchResult.artist(model: $0)
+                    }))
+                    
+                    searchResults.append(contentsOf: result.playlists.items.compactMap({
+                        
+                        SingleSearchResult.playlist(model: $0)
+                    }))
+                    
+                    completion(.success(searchResults))
+                    
                 }
                 catch{
                     print(error.localizedDescription)

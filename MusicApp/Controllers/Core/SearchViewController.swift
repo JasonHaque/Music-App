@@ -82,8 +82,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating,UISearchBa
             DispatchQueue.main.async {
                 switch result{
                 
-                case .success(let model):
-                    break
+                case .success(let results):
+                    resultsController.update(with : results)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
