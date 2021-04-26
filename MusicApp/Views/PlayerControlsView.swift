@@ -8,7 +8,15 @@
 import Foundation
 import UIKit
 
+protocol PlayerControlsViewDelegate : AnyObject{
+    func playerControlsViewDidTapPlayPause(_ playersControlsView : PlayerControlsView)
+    func playerControlsViewDidTapForward(_ playersControlsView : PlayerControlsView)
+    func playerControlsViewDidTapBackward(_ playersControlsView : PlayerControlsView)
+}
+
 final class PlayerControlsView : UIView{
+    
+    weak var delegate : PlayerControlsViewDelegate?
     
     private let volumeSlider : UISlider = {
         let slider = UISlider()
@@ -57,7 +65,7 @@ final class PlayerControlsView : UIView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .red
+        backgroundColor = .clear
         addSubview(nameLabel)
         addSubview(subtitleLabel)
         addSubview(volumeSlider)
@@ -65,7 +73,23 @@ final class PlayerControlsView : UIView{
         addSubview(forwardButton)
         addSubview(playPauseButton)
         
+        backButton.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
+        forwardButton.addTarget(self, action: #selector(didTapForwardButton), for: .touchUpInside)
+        playPauseButton.addTarget(self, action: #selector(didTapPlayPauseButton), for: .touchUpInside)
+        
         clipsToBounds = true
+    }
+    
+    @objc private func didTapBackButton(){
+        delegate?.playerControlsViewDidTapBackward(self)
+    }
+    
+    @objc private func didTapForwardButton(){
+        delegate?.playerControlsViewDidTapForward(self)
+    }
+    
+    @objc private func didTapPlayPauseButton(){
+        delegate?.playerControlsViewDidTapPlayPause(self)
     }
     
     required init?(coder: NSCoder) {
