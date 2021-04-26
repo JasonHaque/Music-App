@@ -21,6 +21,7 @@
 		8D41E673263659D500524600 /* SearchResultDefaultTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D41E672263659D500524600 /* SearchResultDefaultTableViewCellViewModel.swift */; };
 		8D41E67626365E7700524600 /* SearchResultSubTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D41E67526365E7700524600 /* SearchResultSubTitleTableViewCell.swift */; };
 		8D41E6792636605B00524600 /* SearchResultSubTitleTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D41E6782636605B00524600 /* SearchResultSubTitleTableViewCellViewModel.swift */; };
+		8D41E67D26369C1C00524600 /* PlaybackPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D41E67C26369C1C00524600 /* PlaybackPresenter.swift */; };
 		8D50EC02263553DB001F9055 /* SearchResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D50EC01263553DB001F9055 /* SearchResultResponse.swift */; };
 		8D50EC0526356E5F001F9055 /* SingleSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D50EC0426356E5F001F9055 /* SingleSearchResult.swift */; };
 		8D55907925ECF62900F88D9C /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55907825ECF62900F88D9C /* TabsViewController.swift */; };
@@ -79,6 +80,7 @@
 		8D41E672263659D500524600 /* SearchResultDefaultTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDefaultTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		8D41E67526365E7700524600 /* SearchResultSubTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSubTitleTableViewCell.swift; sourceTree = "<group>"; };
 		8D41E6782636605B00524600 /* SearchResultSubTitleTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSubTitleTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		8D41E67C26369C1C00524600 /* PlaybackPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackPresenter.swift; sourceTree = "<group>"; };
 		8D50EC01263553DB001F9055 /* SearchResultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultResponse.swift; sourceTree = "<group>"; };
 		8D50EC0426356E5F001F9055 /* SingleSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSearchResult.swift; sourceTree = "<group>"; };
 		8D55907825ECF62900F88D9C /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
@@ -228,6 +230,14 @@
 			path = SearchResultCells;
 			sourceTree = "<group>";
 		};
+		8D41E67B26369BEA00524600 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8D41E67C26369C1C00524600 /* PlaybackPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		8D55908225ECF6AB00F88D9C /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +297,7 @@
 		8DD67E0B25DDA53C00B839C0 /* MusicApp */ = {
 			isa = PBXGroup;
 			children = (
+				8D41E67B26369BEA00524600 /* Presenter */,
 				8D39BE5225DFEF4200815317 /* Resources */,
 				8D39BE5125DFEF3600815317 /* Managers */,
 				8D39BE5025DFEF2D00815317 /* ViewModels */,
@@ -468,6 +479,7 @@
 				8DB69F1325FFD79600988292 /* SettingsModels.swift in Sources */,
 				8D55909425ECF86000F88D9C /* PlaylistViewController.swift in Sources */,
 				8DD67E0F25DDA53C00B839C0 /* SceneDelegate.swift in Sources */,
+				8D41E67D26369C1C00524600 /* PlaybackPresenter.swift in Sources */,
 				8D55909125ECF85600F88D9C /* PlayerViewController.swift in Sources */,
 				8D2DD8872632AF76000CC710 /* AlbumTrackCollectionViewCell.swift in Sources */,
 				8DB7C1F8260D2EA000EE7592 /* AlbumDetailsResponse.swift in Sources */,
