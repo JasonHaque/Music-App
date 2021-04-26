@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class SearchResultDefaultTableViewCell: UITableViewCell {
 
@@ -35,10 +36,19 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        iconImageView.frame = CGRect(x: 10, y: 0, width: contentView.height, height: contentView.height)
+        label.frame = CGRect(x: iconImageView.right+10, y: 0, width: contentView.width-iconImageView.right-15, height: contentView.height)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        iconImageView.image = nil
+        label.text = nil
+    }
+    
+    func configure(with viewModel : SearchResultDefaultTableViewCellViewModel){
+        label.text = viewModel.title
+        iconImageView.sd_setImage(with: viewModel.imageURL, completed: nil)
     }
     
 }
