@@ -15,6 +15,8 @@ class PlayerViewController: UIViewController {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
+    
+    private let controlsView = PlayerControlsView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +25,14 @@ class PlayerViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         view.addSubview(imageView)
+        view.addSubview(controlsView)
         configureBarButtonItems()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         imageView.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: view.width, height: view.width)
+        controlsView.frame = CGRect(x: 10, y: imageView.bottom+10, width: view.width-20, height: view.height-imageView.height-view.safeAreaInsets.top-view.safeAreaInsets.bottom-15)
     }
 
     private func configureBarButtonItems(){
