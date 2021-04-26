@@ -31,7 +31,8 @@ class PlayerViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        imageView.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: view.width, height: view.width)
+        let imageSize = view.width-100
+        imageView.frame = CGRect(x: 50, y: view.safeAreaInsets.top, width: imageSize, height: imageSize)
         controlsView.frame = CGRect(x: 10, y: imageView.bottom+10, width: view.width-20, height: view.height-imageView.height-view.safeAreaInsets.top-view.safeAreaInsets.bottom-15)
     }
 
