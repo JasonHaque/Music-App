@@ -36,7 +36,10 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        iconImageView.frame = CGRect(x: 10, y: 0, width: contentView.height, height: contentView.height)
+        let imageSize : CGFloat = contentView.height-10
+        iconImageView.layer.cornerRadius = imageSize/2
+        iconImageView.layer.masksToBounds = true
+        iconImageView.frame = CGRect(x: 10, y: 5, width: imageSize, height: imageSize)
         label.frame = CGRect(x: iconImageView.right+10, y: 0, width: contentView.width-iconImageView.right-15, height: contentView.height)
     }
     

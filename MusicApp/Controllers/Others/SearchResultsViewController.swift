@@ -24,6 +24,7 @@ class SearchResultsViewController: UIViewController {
     
     private let tableView : UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
+        table.register(SearchResultDefaultTableViewCell.self, forCellReuseIdentifier: SearchResultDefaultTableViewCell.identifier)
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         table.isHidden = true
         return table
@@ -94,21 +95,26 @@ extension SearchResultsViewController : UITableViewDelegate , UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let result = sections[indexPath.section].results[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let rcell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         switch result{
         
         case .album(model: let model):
-            cell.textLabel?.text = model.name
+            rcell.textLabel?.text = model.name
         case .artist(model: let model):
-            cell.textLabel?.text = model.name
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultDefaultTableViewCell.identifier, for: indexPath) as? SearchResultDefaultTableViewCell else{
+                return UITableViewCell()
+            }
+            let viewModel = SearchResultDefaultTableViewCellViewModel(title: model.name, imageURL: URL(string: model.images?.first?.url ?? ""))
+            cell.configure(with: viewModel)
+            return cell
         case .track(model: let model):
-            cell.textLabel?.text = model.name
+            rcell.textLabel?.text = model.name
         case .playlist(model: let model):
-            cell.textLabel?.text = model.name
+            rcell.textLabel?.text = model.name
         }
         
-        return cell
+        return rcell
         
     }
     
