@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 protocol PlayerDataSource : AnyObject{
     var songName : String? {get}
@@ -31,13 +32,26 @@ final class PlaybackPresenter{
         return nil
     }
     
+    var player : AVPlayer?
+    
     public func startPlayback(from viewController : UIViewController , track : AudioTrack){
+        
+        guard let url = URL(string : track.preview_url ?? "") else{
+            return
+        }
+        
+        player = AVPlayer(url: url)
+        player?.volume = 0.5
         self.track = track
         self.tracks = []
         let vc = PlayerViewController()
         vc.title = track.name
         vc.dataSource = self
-        viewController.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+        viewController.present(UINavigationController(rootViewController: vc), animated: true){ [weak self]  in
+            
+            self?.player?.play()
+            
+        }
         
     }
     
