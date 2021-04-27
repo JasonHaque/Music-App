@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PlayerViewController: UIViewController {
+    
+    weak var dataSource : PlayerDataSource?
     
     private let imageView : UIImageView = {
         let imageView = UIImageView()
@@ -28,6 +31,7 @@ class PlayerViewController: UIViewController {
         view.addSubview(controlsView)
         controlsView.delegate = self
         configureBarButtonItems()
+        configure()
     }
     
     override func viewDidLayoutSubviews() {
@@ -41,7 +45,9 @@ class PlayerViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapClose))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapAction))
     }
-    
+    private func configure(){
+        imageView.sd_setImage(with: dataSource?.imageURL, completed: nil)
+    }
     @objc private func didTapClose(){
         dismiss(animated: true, completion: nil)
     }

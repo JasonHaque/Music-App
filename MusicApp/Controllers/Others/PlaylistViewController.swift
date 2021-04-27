@@ -130,7 +130,7 @@ extension PlaylistViewController : UICollectionViewDelegate, UICollectionViewDat
         let index = indexPath.row
         let track = tracks[index]
         
-        PlaybackPresenter.startPlayback(from: self, track: track)
+        PlaybackPresenter.shared.startPlayback(from: self, track: track)
     }
 }
 
@@ -138,7 +138,7 @@ extension PlaylistViewController : PlaylistHeaderCollectionReusableViewDelegate{
     func PlaylistHeaderCollectionReusableViewDidTapPlayAll(_ header: PlaylistHeaderCollectionReusableView) {
         print("Playing ALL........")
         
-        PlaybackPresenter.startPlayback(from: self, tracks: tracks)
+        PlaybackPresenter.shared.startPlayback(from: self, tracks: tracks)
     }
     
     

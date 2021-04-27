@@ -122,7 +122,7 @@ extension SearchViewController : SearchResultsViewControllerDelegate{
             
             present(vc,animated: true)
         case .track(model: let model):
-            PlaybackPresenter.startPlayback(from: self, track: model)
+            PlaybackPresenter.shared.startPlayback(from: self, track: model)
         case .playlist(model: let model):
             let vc = PlaylistViewController(playlist: model)
             vc.navigationItem.largeTitleDisplayMode = .never
