@@ -56,15 +56,15 @@ final class PlaybackPresenter{
 
 extension PlaybackPresenter : PlayerDataSource {
     var songName: String? {
-        return nil
+        return currentTrack?.name
     }
     
     var subtitle: String? {
-        return nil
+        return currentTrack?.artists.first?.name
     }
     
     var imageURL: URL? {
-        return nil
+        return URL(string :currentTrack?.album?.images.first?.url ?? "")
     }
     
     
