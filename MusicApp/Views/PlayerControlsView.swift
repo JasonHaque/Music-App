@@ -12,6 +12,7 @@ protocol PlayerControlsViewDelegate : AnyObject{
     func playerControlsViewDidTapPlayPause(_ playersControlsView : PlayerControlsView)
     func playerControlsViewDidTapForward(_ playersControlsView : PlayerControlsView)
     func playerControlsViewDidTapBackward(_ playersControlsView : PlayerControlsView)
+    func playerControlsViewDidSlideVolumeSlider(_ playersControlsView : PlayerControlsView, didSlideSlider value : Float)
 }
 
 struct PlayerControlsViewViewModel{
@@ -22,6 +23,8 @@ struct PlayerControlsViewViewModel{
 final class PlayerControlsView : UIView{
     
     weak var delegate : PlayerControlsViewDelegate?
+    
+    private var isPlaying = true
     
     private let volumeSlider : UISlider = {
         let slider = UISlider()
@@ -81,8 +84,14 @@ final class PlayerControlsView : UIView{
         backButton.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
         forwardButton.addTarget(self, action: #selector(didTapForwardButton), for: .touchUpInside)
         playPauseButton.addTarget(self, action: #selector(didTapPlayPauseButton), for: .touchUpInside)
+        volumeSlider.addTarget(self, action: #selector(didSlideSlider), for: .valueChanged)
         
         clipsToBounds = true
+    }
+    
+    @objc private func didSlideSlider(_ slider : UISlider){
+        let value = slider.value
+        delegate?.playerControlsViewDidSlideVolumeSlider(self, didSlideSlider: value)
     }
     
     @objc private func didTapBackButton(){
@@ -94,7 +103,11 @@ final class PlayerControlsView : UIView{
     }
     
     @objc private func didTapPlayPauseButton(){
+        self.isPlaying = !isPlaying
         delegate?.playerControlsViewDidTapPlayPause(self)
+        let play = UIImage(systemName: "pause",withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .regular))
+        let pause = UIImage(systemName: "play.fill",withConfiguration: UIImage.SymbolConfiguration(pointSize: 40, weight: .regular))
+        playPauseButton.setImage(isPlaying ? play : pause, for: .normal)
     }
     
     required init?(coder: NSCoder) {

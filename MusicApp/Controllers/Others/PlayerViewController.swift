@@ -12,6 +12,7 @@ protocol PlayerViewControllerDelegate : AnyObject{
     func didTapPlayPause()
     func didTapForward()
     func didTapBackward()
+    func didSlideSlider(_ value : Float)
 }
 
 class PlayerViewController: UIViewController {
@@ -68,6 +69,10 @@ class PlayerViewController: UIViewController {
 }
 
 extension PlayerViewController : PlayerControlsViewDelegate{
+    func playerControlsViewDidSlideVolumeSlider(_ playersControlsView: PlayerControlsView, didSlideSlider value: Float) {
+        delegate?.didSlideSlider(value)
+    }
+    
     func playerControlsViewDidTapPlayPause(_ playersControlsView: PlayerControlsView) {
         print("Play or pause")
         delegate?.didTapPlayPause()
