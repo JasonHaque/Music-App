@@ -14,8 +14,8 @@ final class AuthManager{
     private var refreshinToken = false
     
     struct Constants{
-        static let clientID = "42157579101c4d5ba3cd04ef455e46b0"
-        static let clientSecret = "6ea5624768cf41a0b02aa3753b67d8be"
+        static let clientID = "42157579101c4d5ba3cd04ef455e46b0" //ADD YOUR OWN CLIENT ID FROM SPOTIFY DEVELEOPER (This one is blocked)
+        static let clientSecret = "6ea5624768cf41a0b02aa3753b67d8be" //ADD YOUR OWN CLIENT SECRET FROM SPOTIFY DEVELEOPER (This one is blocked)
         static let tokenAPIURL = "https://accounts.spotify.com/api/token"
         static let redirectURI = "https://m.facebook.com/jason.haque.3"
         static let scopes = "user-read-private%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-library-modify%20user-library-read%20user-read-email"
